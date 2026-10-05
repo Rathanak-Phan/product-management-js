@@ -11,12 +11,18 @@
     <div class="container">
         <h2 class="text-center my-5">Product Management</h2>
 
-        <div class="text-end">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <!-- Search container -->
+            <div class="d-flex gap-3 align-items-center" style="width: 500px;">
+                <input type="text" id="search" class="w-100 py-1 px-3 rounded-5">
+                <button class="btn btn-success">Search</button>
+            </div>
+
             <button 
                 data-bs-toggle="modal"
                 data-bs-target="#productModal"
                 onclick="openAddModal()"
-                class="btn btn-success mb-4">Add product</button>
+                class="btn btn-success">Add product</button>
         </div>
 
         <table class="table table-bordered">

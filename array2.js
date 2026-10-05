@@ -119,25 +119,81 @@ const saveBtn = document.getElementById("save-btn")
 
 const products = [
     {
-        name: "Iphone 4",
-        code: "XBC12",
-        price: 100,
-        qty: 23,
-        image: "https://i.ebayimg.com/images/g/GCsAAOSwpDdU9zYC/s-l1200.jpg"
+        name: "MacBook Air M2",
+        code: "MB102",
+        price: 899,
+        qty: 12,
+        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
     },
     {
-        name: "Iphone 5",
-        code: "XBC12",
-        price: 110,
-        qty: 21,
-        image: "https://i.ebayimg.com/images/g/22oAAOSw7C5cPy3F/s-l1200.jpg"
+        name: "Samsung Galaxy S24",
+        code: "SG204",
+        price: 749,
+        qty: 18,
+        image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"
     },
+    {
+        name: "Sony WH-1000XM5",
+        code: "SW305",
+        price: 349,
+        qty: 25,
+        image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b"
+    },
+    {
+        name: "Nike Air Max 270",
+        code: "NK406",
+        price: 150,
+        qty: 30,
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff"
+    },
+    {
+        name: "Logitech MX Master 3S",
+        code: "LM507",
+        price: 99,
+        qty: 22,
+        image: "https://images.unsplash.com/photo-1527814050087-3793815479db"
+    },
+    {
+        name: "Canon EOS R50",
+        code: "CR608",
+        price: 679,
+        qty: 7,
+        image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32"
+    },
+    {
+        name: "Apple Watch Series 9",
+        code: "AW709",
+        price: 399,
+        qty: 14,
+        image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12"
+    },
+    {
+        name: "JBL Flip 6",
+        code: "JF810",
+        price: 129,
+        qty: 35,
+        image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1"
+    },
+    {
+        name: "Nintendo Switch OLED",
+        code: "NS911",
+        price: 349,
+        qty: 9,
+        image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e"
+    },
+    {
+        name: "Dell UltraSharp Monitor",
+        code: "DU012",
+        price: 429,
+        qty: 11,
+        image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf"
+    }
 ];
 
-function Display() {
+function Display(data) {
     let row = "";
 
-    products.forEach((element, index) => {
+    data.forEach((element, index) => {
         row += `
             <tr>
                 <td>${element.name}</td>
@@ -164,7 +220,7 @@ function Display() {
     showProduct.innerHTML = row;
 }
 
-Display();
+Display(products);
 
 let isUpdate;
 let updateIndex;
@@ -217,7 +273,7 @@ form.addEventListener("submit", (event) => {
 
     console.log(products[updateIndex]);
 
-    Display();
+    Display(products);
 });
 
 function Delete(index, product_name) {
@@ -225,5 +281,15 @@ function Delete(index, product_name) {
         products.splice(index, 1);
     }
 
-    Display();
+    Display(products);
 }
+
+const search = document.getElementById("search");
+
+search.addEventListener("input", () => {
+    const result = products.filter(
+        item => item.name.toLocaleLowerCase()
+        .includes(search.value.toLocaleLowerCase()));
+
+    Display(result);
+});

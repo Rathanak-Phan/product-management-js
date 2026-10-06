@@ -13,9 +13,16 @@
 
         <div class="d-flex align-items-center justify-content-between mb-4">
             <!-- Search container -->
-            <div class="d-flex gap-3 align-items-center" style="width: 500px;">
-                <input type="text" id="search" class="w-100 py-1 px-3 rounded-5">
-                <button class="btn btn-success">Search</button>
+            <div class="d-flex gap-3 align-items-center position-relative" style="width: 500px;">
+                <input type="text" id="search" class="w-100 py-2 px-3 rounded-5">
+                <button class="btn btn-success rounded-5 position-absolute end-0 py-2">Search</button>
+            </div>
+
+            <div>
+                <label for="">Category: </label>
+                <select name="" id="category">
+                    
+                </select>
             </div>
 
             <button 
@@ -32,6 +39,7 @@
                     <th>Code</th>
                     <th>Price</th>
                     <th>QTY</th>
+                    <th>Category</th>
                     <th>Image</th>
                     <th>Action</th>
                 </tr>

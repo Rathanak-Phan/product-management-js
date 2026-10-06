@@ -111,6 +111,7 @@ const code = document.getElementById("code");
 const price = document.getElementById("price");
 const qty = document.getElementById("qty");
 const image = document.getElementById("image");
+const category = document.getElementById("category");
 
 const previewsImage = document.getElementById("previews-image");
 
@@ -121,6 +122,7 @@ const products = [
     {
         name: "MacBook Air M2",
         code: "MB102",
+        category: "Laptop",
         price: 899,
         qty: 12,
         image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
@@ -128,34 +130,39 @@ const products = [
     {
         name: "Samsung Galaxy S24",
         code: "SG204",
+        category: "Smartphone",
         price: 749,
         qty: 18,
         image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"
     },
     {
+        name: "MacBook Pro 14",
+        code: "MB103",
+        category: "Laptop",
+        price: 1299,
+        qty: 8,
+        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+    },
+    {
         name: "Sony WH-1000XM5",
         code: "SW305",
+        category: "Accessories",
         price: 349,
         qty: 25,
         image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b"
     },
     {
-        name: "Nike Air Max 270",
-        code: "NK406",
-        price: 150,
-        qty: 30,
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff"
-    },
-    {
-        name: "Logitech MX Master 3S",
-        code: "LM507",
-        price: 99,
-        qty: 22,
-        image: "https://images.unsplash.com/photo-1527814050087-3793815479db"
+        name: "Google Pixel 9",
+        code: "GP406",
+        category: "Smartphone",
+        price: 799,
+        qty: 15,
+        image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97"
     },
     {
         name: "Canon EOS R50",
         code: "CR608",
+        category: "Accessories",
         price: 679,
         qty: 7,
         image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32"
@@ -163,6 +170,7 @@ const products = [
     {
         name: "Apple Watch Series 9",
         code: "AW709",
+        category: "Accessories",
         price: 399,
         qty: 14,
         image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12"
@@ -170,25 +178,66 @@ const products = [
     {
         name: "JBL Flip 6",
         code: "JF810",
+        category: "Accessories",
         price: 129,
         qty: 35,
         image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1"
     },
     {
-        name: "Nintendo Switch OLED",
-        code: "NS911",
-        price: 349,
+        name: "Samsung Galaxy S25",
+        code: "SG911",
+        category: "Smartphone",
+        price: 899,
         qty: 9,
-        image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e"
+        image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"
     },
     {
         name: "Dell UltraSharp Monitor",
         code: "DU012",
+        category: "Accessories",
         price: 429,
         qty: 11,
         image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf"
     }
 ];
+
+// ....
+const getCategory = [];
+products.forEach(item => {
+    if (!getCategory.includes(item.category)) {
+        getCategory.push(item.category);
+    }
+});
+console.log("?: ", getCategory);
+
+function showCategory() {
+    let option = "";
+
+    option += `<option value="" selected disabled>Select category</option>`;
+
+    getCategory.forEach(item => {
+        option += `
+            <option value="${item}">${item}</option>
+        `
+    });
+    category.innerHTML = option;
+}
+
+showCategory();
+
+category.addEventListener("change", () => {
+    const selectedCategory = category.value;
+
+    const result = products.filter(item => item.category == selectedCategory);
+
+    if (result == "") {
+        Display(products);
+    }
+
+    Display(result);
+});
+
+
 
 function Display(data) {
     let row = "";
@@ -200,6 +249,7 @@ function Display(data) {
                 <td>${element.code}</td>
                 <td>${element.price}</td>
                 <td>${element.qty}</td>
+                <td>${element.category}</td>
                 <td>
                     <img src="${element.image}" alt="${element.name}" style="width: 40px;">
                 </td>
